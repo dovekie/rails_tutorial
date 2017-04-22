@@ -68,6 +68,13 @@ class TopicsController < ApplicationController
     redirect_to(topics_path)
   end
 
+  # POST /topics/1/downvote
+  def downvote
+    @topic = Topic.find(params[:id])
+    @topic.votes.last.destroy
+    redirect_to(topics_path)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_topic
